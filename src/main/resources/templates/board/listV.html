@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시물 목록</title>
+</head>
+<body>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>제목</th>
+<th>내용</th>
+<th>작성자</th>
+</tr>
+</thead>
+
+<tbody>
+<tr th:each="board : ${boardList}">
+<td th:text="${board.id}">id</td>
+<td th:text="${board.title}">title</td>
+<td th:text="${board.content}">content</td>
+<td th:text="${board.writer}">writer</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

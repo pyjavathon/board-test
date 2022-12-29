@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.make.board.domain.Board;
+import com.make.board.dto.BoardDto;
 import com.make.board.repository.BoardRepository;
 import com.make.board.service.BoardService;
 
@@ -19,6 +20,12 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> list = br.findAll();
 		System.out.println(list.toString());
 		return list;
+	}
+
+	@Override
+	public void boardSave(Board bt) {
+		br.save(bt);
+		
 	}
 
 }

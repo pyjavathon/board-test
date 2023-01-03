@@ -38,3 +38,7 @@ spring:
     prefix: classpath:templates/
     suffix: .html 
     cache: false
+    
+    
+mybatis:
+  mapper-locations: classpath*:META-INF/persistence/mybatis/mapper/**/*.xml    

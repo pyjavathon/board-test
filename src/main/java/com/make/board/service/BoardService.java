@@ -16,4 +16,6 @@ public interface BoardService {
 
 	public Board boardDetail(long seq);
 
+	public Board boardModify(long seq);
+
 }

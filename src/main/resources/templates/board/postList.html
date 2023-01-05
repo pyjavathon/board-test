@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<ul>
+        <li th:each="board : ${boardList}" th:text="|${board.title} , ${board.id}|"></li>
+    </ul>
+
+<a th:href="@{/helloPage}">메인으로 이동</a>
+<a th:href="@{/board/write}">글 쓰기</a>
+</body>
+
+
+</html>

@@ -27,8 +27,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void boardSave(Board bt) {
-		Optional<Board> find = br.findById(bt.getId());
-		br.save(find.get());
+		br.save(bt);
 		
 	}
 

@@ -1,18 +1,15 @@
 package com.make.board.service;
 
-import java.util.List;
-import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.make.board.domain.Board;
-import com.make.board.dto.BoardDto;
 
 public interface BoardService {
 	
 	
 	
-	public List<Board> boardList();
 
 	public void boardSave(Board bt, MultipartFile file)throws Exception;
 
@@ -21,5 +18,9 @@ public interface BoardService {
 	public Board boardModify(long seq);
 
 	public void boardDel(long seq);
+
+	public Page<Board> boardList(int pNum, int searchN, String search);
+
+	public Page<Board> boardList(int pNum);
 
 }

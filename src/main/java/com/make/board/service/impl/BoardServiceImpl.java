@@ -6,6 +6,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,10 +26,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper bm;
 	
-	@Override
-	public List<Board> boardList() {
-		return bm.boardList();
-	}
+	
 
 	@Override
 	public void boardSave(Board bt,MultipartFile file) throws Exception {
@@ -63,6 +63,18 @@ public class BoardServiceImpl implements BoardService {
 	public void boardDel(long seq) {
 		br.deleteById(seq);
 		
+	}
+
+	@Override
+	public Page<Board> boardList(int pNum, int searchN, String search) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<Board> boardList(int pNum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

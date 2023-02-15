@@ -1,10 +1,13 @@
 package com.make.board.service.impl;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.make.board.domain.Board;
 import com.make.board.dto.BoardDto;
@@ -26,7 +29,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void boardSave(Board bt) {
+	public void boardSave(Board bt,MultipartFile file) throws Exception {
+		
+		String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
+		
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid+"_"+file.getOriginalFilename();
+		
+		File saveFile = new File(projectPath,fileName);
+		
+		file.transferTo(saveFile);
+		
+		bt.setFilename(fileName);
+		
+		bt.setFilepath("/files/"+fileName);
+		
 		br.save(bt);
 		
 	}
@@ -40,6 +57,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board boardModify(long seq) {
 		return br.findById(seq);
+	}
+
+	@Override
+	public void boardDel(long seq) {
+		br.deleteById(seq);
+		
 	}
 
 }

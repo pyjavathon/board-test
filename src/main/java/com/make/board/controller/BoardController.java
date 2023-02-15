@@ -1,20 +1,17 @@
 package com.make.board.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.make.board.domain.Board;
-import com.make.board.dto.BoardDto;
 import com.make.board.service.BoardService;
 
 @Controller
@@ -38,8 +35,8 @@ public class BoardController {
 	
 	//글 쓰기
 	@PostMapping(value = "/write")
-	public String boardSave(Board bt) {
-		boardService.boardSave(bt);
+	public String boardSave(Board bt,MultipartFile file, Model model) throws Exception{
+		boardService.boardSave(bt, file);
 		return "redirect:/board/list";
 	}
 	
@@ -55,9 +52,25 @@ public class BoardController {
 	
 	//글 수정
 	@GetMapping(value = "/modify/{seq}")
-	public String boardModify(Model m, @PathVariable("seq")long seq) {
-		Board b = boardService.boardModify(seq);
-		m.addAttribute("board",b);
-		return "board/modifyView";
+	public String boardModify(@PathVariable("seq")long seq,Model m) {
+		Board b= boardService.boardDetail(seq);
+		
+		m.addAttribute("board", b);
+		
+		return "board/modify";
+		
+	}
+	
+	@PutMapping(value = "modify/{seq}")
+	public String boardModify(Board b,MultipartFile file) throws Exception {
+		boardService.boardSave(b,file);
+		return "redirect:/board/list";
+	}
+	
+	//글 삭제
+	@DeleteMapping(value = "/delete/{seq}")
+	public String boardDel(@PathVariable("seq") long seq) {
+		boardService.boardDel(seq);
+		return "redirect:/board/list";
 	}
 }

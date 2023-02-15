@@ -5,15 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form th:action="@{/board/write}" method="post">
-<div><input type="hidden" th:value="${board.id}"></div>
-<div><input type="text" name="title" th:value="${board.title}"></div>
-<div><input type="text" name="writer" th:value="${board.writer}"></div>
-<div><textarea rows="10" cols="150" name="content" th:value="${board.content}" th:text="${board.content}"></textarea></div>
-<button type="submit">수정하기</button>
+<label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
+
+<div class="col-sm-10">
+<p th:text="${board.title}"></p>
+</div>
+<label for="inputWriter" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
+<div class="col-sm-10">
+<p th:text="${board.writer}"></p>
+</div>
+<label for="inputContent" class="col-sm-2 col-form-label"><strong>내용</strong></label>
+<p th:text="${board.content}"></p>
+<img th:src="@{/files/14144238-2ab4-4778-bc3f-0afba5bbbcb7_사표.png}"/>
+<p><a th:href="@{/board/list}">목록으로 돌아ㄱrㄱl (>ㅅo)</a></p>
+<p><a th:href="@{/board/modify/{seq}(seq=${board.id})}">수정하기</a></p>
+<form id="delete_form" th:action="@{/board/delete/{seq}(seq=${board.id})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <a onclick="if (confirm('정말로 삭제하시겠습니까?')) document.getElementById('delete_form').submit();" class="btn btn-danger">삭제</a>
 </form>
-<p><a th:href="@{/board/list}">목록으로 돌아ㄱrㄱl >ㅅo</a></p>
-<a th:href="@{/board/modify/{seq}(seq=${board.id})}">수정하기</a>
-<!--  -->
 </body>
 </html>

@@ -7,13 +7,15 @@
 <body>
 
 <h1>게시글 등록</h1>
-<form th:action="@{/board/write}" method="post">
+<form th:action="@{/board/write}" method="post" enctype="multipart/form-data">
 <div>
 <input type="text" name="title">
 <input type="text" name="writer">
 <textarea rows="10" cols="150" name="content"></textarea>
+<input type="file" name="file">
 </div>
 <button type="submit">등록하기</button>
 </form>
+<p><a th:href="@{/board/list}">목록으로 돌아ㄱrㄱl >ㅅo</a></p>
 </body>
 </html>

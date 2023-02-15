@@ -7,12 +7,13 @@ import org.springframework.util.Assert;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@Data
 @Entity
 @Table(name = "board")
 public class Board {
@@ -29,6 +30,9 @@ public class Board {
 	
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
+	
+	private String filename;
+	private String filepath;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private User user;

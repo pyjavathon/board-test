@@ -16,7 +16,7 @@
 </div>
 <label for="inputContent" class="col-sm-2 col-form-label"><strong>내용</strong></label>
 <p th:text="${board.content}"></p>
-<img th:src="@{/files/14144238-2ab4-4778-bc3f-0afba5bbbcb7_사표.png}"/>
+
 <p><a th:href="@{/board/list}">목록으로 돌아ㄱrㄱl (>ㅅo)</a></p>
 <p><a th:href="@{/board/modify/{seq}(seq=${board.id})}">수정하기</a></p>
 <form id="delete_form" th:action="@{/board/delete/{seq}(seq=${board.id})}" method="post">

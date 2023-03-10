@@ -1,6 +1,8 @@
 package com.make.board.service;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +23,6 @@ public interface BoardService {
 
 	public Page<Board> boardList(int pNum, int searchN, String search);
 
-	public Page<Board> boardList(int pNum);
+	public List<Board> boardList();
 
 }

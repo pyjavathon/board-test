@@ -72,9 +72,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Page<Board> boardList(int pNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> boardList() {
+		
+		return br.findAll();
 	}
 
 }

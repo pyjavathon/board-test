@@ -29,34 +29,9 @@ public class BoardController {
 	
     //목록 조회
 	@GetMapping(value="/list")
-	public String boardList(Model m,@RequestParam(name = "pNum", defaultValue = "1")int pNum, String search, @RequestParam(defaultValue = "-1")int searchN){
+	public String boardList(Model m){
 		
-		Page<Board> pageList = null;
-		
-		if(search != null) {
-			pageList = boardService.boardList(pNum, searchN,search);
-			String searchMsg = "\""+search+"\"검색 결과 ";
-			m.addAttribute("searchMsg",searchMsg);
-		}else {
-			pageList = boardService.boardList(pNum);
-		}
-		List<Board> bList = pageList.getContent();
-		int totaLPageCount = pageList.getTotalPages();
-		long total = pageList.getTotalElements();
-		
-		m.addAttribute("bList", bList);
-		m.addAttribute("totaLPageCount", totaLPageCount);
-		m.addAttribute("total", total);
-		
-		int pageNum = 5;
-		int begin = (pNum-1)/pageNum*pageNum+1;
-		int end = begin + pageNum -1;
-		if(end>totaLPageCount) end = totaLPageCount;
-		
-		m.addAttribute("begin",begin);
-		m.addAttribute("end",end);
-		m.addAttribute("search",search);
-		m.addAttribute("searchN",searchN);
+		m.addAttribute("board",boardService.boardList());
 		
 		return "board/list"; 
 	}

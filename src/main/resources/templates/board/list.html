@@ -16,7 +16,7 @@
 </thead>
 
 <tbody>
-<tr th:each="board : ${pages}">
+<tr th:each="board : ${board}">
 <td th:text="${board.id}"></td>
 <td><a th:href="@{/board/detail/{seq}(seq=${board.id})}" th:text="${board.title}"></a></td>
 <td th:text="${board.content}"></td>
@@ -26,33 +26,6 @@
 </table>
 <a th:href="@{/helloPage}">메인으로 이동</a>
 <a th:href="@{/board/write}">글 쓰기</a>
-<div class="page-num"
-     th:with="start=${(pages.number/maxPage)*maxPage + 1},
-                  end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})">
-    <ul>
-        <li th:if="${start > 1}">
-            <a th:href="@{/board/list?(page=0)}" th:text="'<<'"></a></li>
-        </li>
-
-        <li th:if="${start > 1}">
-            <a th:href="@{/board/list?(page=${start - maxPage})}" th:text="'<'"></a>
-        </li>
-
-
-        <li th:each="page: ${#numbers.sequence(start, end)}">
-            <a th:href="@{/board/list?(page=${page-1})}" th:text="${page}"></a></li>
-        </li>
-
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/board/list?(page=${start + maxPage})}" th:text="'>'"></a>
-        </li>
-
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/board/list?(page=${pages.totalPages-1})}" th:text="'>>'"></a></li>
-        </li>
-    </ul>
-
-</div>
 
 </body>
 </html>

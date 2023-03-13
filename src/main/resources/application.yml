@@ -12,33 +12,39 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: update  # none, update, create, create-drop, validate
+      ddl-auto: create-drop  # none, update, create, create-drop, validate
+      
   
   mvc:
     hiddenmethod:
       filter:
         enabled: true # GET, POST 뿐 만 아니라 PUT, DELETE 등의 메서드도 사용하기 위한 설정
 
-  devtools:
-    livereload:
-      enabled: true
+  
 
-  logging:
-    level:
-      org:
-        hibernate:
-          SQL: DEBUG
-          type:
-            descriptor:
-              sql:
-                BasicBinder: TRACE
+logging:
+   level:
+     org:
+       hibernate:
+         SQL: DEBUG
+         type:
+           descriptor:
+             sql:
+               BasicBinder: TRACE
                 
-#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   
-  thymeleaf:
+  
+thymeleaf:
     prefix: classpath:templates/
     suffix: .html 
     cache: false
     
     
 mybatis:
-  mapper-locations: classpath*:META-INF/persistence/mybatis/mapper/**/*.xml    
+  mapper-locations: classpath*:META-INF/persistence/mybatis/mapper/**/*.xml
+---  
+security:
+  jwt:
+    token: 
+      header: Authorization
+      secret-key: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+      token-validity-in-seconds: 86400      

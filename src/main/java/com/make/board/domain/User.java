@@ -1,50 +1,55 @@
 package com.make.board.domain;
 
+import java.util.Set;
+
 import javax.persistence.*;
-import lombok.AccessLevel;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class User {
 
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "user_id")
+	private Long userId;
 	
 	@Column(nullable = false)
-	private String name;
+	private String username;
 	
 	@Column(nullable = false)
 	private String email;
 	
-	@Column
-	private String pictuer;
-
-	@Enumerated(EnumType.STRING)
+	@JsonIgnore
 	@Column(nullable = false)
-	private Role role;
+	private String password;
 	
-	@Builder
-	public User(String name, String email, String picture, Role role) {
-		this.name = name;
-		this.email = email;
-		this.pictuer = picture;
-		this.role = role;
-	}
+	@Column
+	private String picture;
 	
-	public User update(String name, String picture) {
-		this.name = name;
-		this.pictuer = picture;
-		return this;
-	}
+	@JsonIgnore
+	@Column(nullable = false)
+	private String activated;
 	
-	public String getRoleKey() {
-		return this.role.getKey();
-	}
+	@ManyToMany
+	@JoinTable(
+			name = "user_authority",
+			joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+			inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+	private Set<Authority> authorities;
+	
 }
 

@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,7 +31,6 @@ public class User {
 	@Column(nullable = false)
 	private String username;
 	
-	@Column(nullable = false)
 	private String email;
 	
 	@JsonIgnore
@@ -40,7 +40,6 @@ public class User {
 	@Column
 	private String picture;
 	
-	@JsonIgnore
 	@Column(nullable = false)
 	private String activated;
 	

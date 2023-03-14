@@ -12,7 +12,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: create-drop  # none, update, create, create-drop, validate
+      ddl-auto: none  # none, update, create, create-drop, validate
       
   
   mvc:
